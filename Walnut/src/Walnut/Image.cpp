@@ -21,7 +21,7 @@ namespace Walnut {
 				if ((prop.memoryTypes[i].propertyFlags & properties) == properties && type_bits & (1 << i))
 					return i;
 			}
-			
+
 			return 0xffffffff;
 		}
 
@@ -29,17 +29,21 @@ namespace Walnut {
 		{
 			switch (format)
 			{
+				case ImageFormat::RGB:     return 4; // 3 ?
 				case ImageFormat::RGBA:    return 4;
-				case ImageFormat::RGBA32F: return 16;
+				case ImageFormat::RGB32F:  return 32; // 12 ?
+				case ImageFormat::RGBA32F: return 32; // 16 ?
 			}
 			return 0;
 		}
-		
+
 		static VkFormat WalnutFormatToVulkanFormat(ImageFormat format)
 		{
 			switch (format)
 			{
+				case ImageFormat::RGB:     return VK_FORMAT_R8G8B8_UNORM;
 				case ImageFormat::RGBA:    return VK_FORMAT_R8G8B8A8_UNORM;
+				case ImageFormat::RGB32F:  return VK_FORMAT_R32G32B32_SFLOAT;
 				case ImageFormat::RGBA32F: return VK_FORMAT_R32G32B32A32_SFLOAT;
 			}
 			return (VkFormat)0;
@@ -66,7 +70,7 @@ namespace Walnut {
 
 		m_Width = width;
 		m_Height = height;
-		
+
 		AllocateMemory(m_Width * m_Height * Utils::BytesPerPixel(m_Format));
 		SetData(data);
 	}
@@ -89,7 +93,7 @@ namespace Walnut {
 		VkDevice device = Application::GetDevice();
 
 		VkResult err;
-		
+
 		VkFormat vulkanFormat = Utils::WalnutFormatToVulkanFormat(m_Format);
 
 		// Create the Image
