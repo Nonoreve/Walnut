@@ -2,8 +2,11 @@
 .vs/
 .vscode/
 .cache
+.idea
 bin/
 bin-int/
+build
+cmake*
 
 # Files
 *.vcxproj
