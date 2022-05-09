@@ -5,7 +5,7 @@
 .idea
 bin/
 bin-int/
-build
+build/
 cmake*
 
 # Files
@@ -13,6 +13,7 @@ cmake*
 *.vcxproj.user
 *.vcxproj.filters
 *.sln
+compile_commands.json
 
 # Exclude
 !vendor/bin
