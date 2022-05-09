@@ -18,5 +18,5 @@ group "Dependencies"
 group ""
 
 group "Core"
-include "Walnut"
+    include "Walnut"
 group ""

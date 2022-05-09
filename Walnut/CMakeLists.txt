@@ -10,6 +10,8 @@ set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/modules")
 # flags for gcc or clang
 set(GCC_COVERAGE_COMPILE_FLAGS "")
 
+add_definitions(-DWL_PLATFORM_LINUX)
+
 if(NOT MSVC)
 	set(CMAKE_CXX_FLAGS	"${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}")
 endif()
